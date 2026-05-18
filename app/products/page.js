@@ -3,11 +3,17 @@ import ProductCard from "../components/ProductCard";
 export default async function ProductsPage({ searchParams }) {
   const params = await searchParams;
   const isFeatured = params?.featured === 'true';
+  const searchQuery = params?.search || '';
   
   let products = [];
   try {
-    const query = isFeatured ? "?featured=true" : "";
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products${query}`, {
+    let queryArgs = [];
+    if (isFeatured) queryArgs.push("featured=true");
+    if (searchQuery) queryArgs.push(`search=${encodeURIComponent(searchQuery)}`);
+    
+    const queryString = queryArgs.length > 0 ? `?${queryArgs.join('&')}` : "";
+
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products${queryString}`, {
       cache: "no-store"
     });
     if (res.ok) {
@@ -18,14 +24,25 @@ export default async function ProductsPage({ searchParams }) {
     console.error("Failed to fetch products:", e);
   }
 
+  let pageTitle = "All Products";
+  let pageSubtitle = "Our Collection";
+
+  if (searchQuery) {
+    pageTitle = `Results for "${searchQuery}"`;
+    pageSubtitle = "Search";
+  } else if (isFeatured) {
+    pageTitle = "Latest Premium Jewelry";
+    pageSubtitle = "New Arrivals";
+  }
+
   return (
     <main className="mx-auto max-w-7xl px-6 py-20">
-      <p className="text-sm uppercase tracking-[0.35em] text-[#d4af37]">
-        {isFeatured ? "New Arrivals" : "Our Collection"}
+      <p className="text-sm uppercase tracking-[0.35em] text-[#d4af37] font-bold">
+        {pageSubtitle}
       </p>
 
       <h1 className="mt-3 text-5xl font-black">
-        {isFeatured ? "Latest Premium Jewelry" : "All Products"}
+        {pageTitle}
       </h1>
 
       <div className="mt-14">

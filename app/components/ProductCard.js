@@ -15,12 +15,17 @@ export default function ProductCard({ product }) {
   return (
     <div className="group overflow-hidden rounded-[30px] luxury-card">
       <Link href={`/products/${product.slug}`}>
-        <div className="aspect-[4/5] overflow-hidden">
+        <div className="relative h-[300px] w-full overflow-hidden bg-gray-50">
           <img
             src={product.images?.[0]}
             alt={product.name}
             className="h-full w-full object-cover transition duration-700 group-hover:scale-110"
           />
+          <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 transition-opacity duration-500 group-hover:opacity-100 z-10">
+            <span className="bg-black text-white px-8 py-3 rounded-full font-bold uppercase tracking-widest text-xs shadow-xl border border-white/10">
+              View Product
+            </span>
+          </div>
         </div>
       </Link>
 
@@ -55,13 +60,6 @@ export default function ProductCard({ product }) {
           >
             Add to Quotation
           </button>
-
-          <Link
-            href={`/products/${product.slug}`}
-            className="rounded-full border border-black/10 px-5 py-4 text-center hover:bg-black/5"
-          >
-            View Details
-          </Link>
         </div>
       </div>
     </div>
