@@ -1,51 +1,61 @@
 "use client";
+
 import { useState } from "react";
 
 export default function ProductGallery({ images, alt }) {
-  const fallbackImage = "https://images.unsplash.com/photo-1617038220319-276d3cfab638";
-  const [selectedImage, setSelectedImage] = useState(images?.[0] || fallbackImage);
+  const fallbackImage =
+    "https://images.unsplash.com/photo-1617038220319-276d3cfab638";
 
-  if (!images || images.length === 0) {
-    return (
-      <div className="overflow-hidden rounded-[40px] luxury-card p-4">
-        <img
-          src={fallbackImage}
-          alt={alt}
-          className="h-[700px] w-full rounded-[32px] object-cover"
-        />
-      </div>
-    );
-  }
+  const galleryImages = images?.length ? images : [fallbackImage];
+  const [selectedImage, setSelectedImage] = useState(galleryImages[0]);
 
   return (
-    <div className="flex flex-col gap-4">
-      <div className="overflow-hidden rounded-[40px] luxury-card p-4">
+    <div className="flex flex-col gap-5">
+      {/* MAIN IMAGE */}
+      <div className="group relative overflow-hidden rounded-[38px] border border-[#d4af37]/20 bg-black/30 p-3 shadow-[0_25px_80px_rgba(0,0,0,0.5)]">
+        <div className="pointer-events-none absolute inset-0 rounded-[38px] bg-gradient-to-br from-[#d4af37]/20 via-transparent to-transparent opacity-70" />
+
+        <div className="pointer-events-none absolute right-[-80px] top-[-80px] h-56 w-56 rounded-full bg-[#d4af37]/15 blur-3xl" />
+
         <img
           src={selectedImage}
           alt={alt}
-          className="h-[700px] w-full rounded-[32px] object-cover transition-opacity duration-300"
+          className="relative z-10 h-[520px] w-full rounded-[30px] object-cover transition duration-500 group-hover:scale-[1.03] sm:h-[620px] lg:h-[700px]"
         />
+
+        <div className="pointer-events-none absolute bottom-7 left-7 z-20 rounded-full border border-[#d4af37]/30 bg-black/50 px-5 py-2 text-xs font-bold uppercase tracking-[0.25em] text-[#f5d676] backdrop-blur-md">
+          ITC Gold House
+        </div>
       </div>
-      
-      {images.length > 1 && (
-        <div className="flex gap-4 overflow-x-auto pb-2 px-2 scrollbar-hide">
-          {images.map((img, idx) => (
-            <button
-              key={idx}
-              onClick={() => setSelectedImage(img)}
-              className={`flex-shrink-0 overflow-hidden rounded-2xl border-2 transition-all ${
-                selectedImage === img 
-                  ? "border-[#d4af37] shadow-md scale-105" 
-                  : "border-transparent opacity-60 hover:opacity-100 hover:scale-105"
-              }`}
-            >
-              <img
-                src={img}
-                alt={`${alt} thumbnail ${idx + 1}`}
-                className="h-24 w-24 object-cover"
-              />
-            </button>
-          ))}
+
+      {/* THUMBNAILS */}
+      {galleryImages.length > 1 && (
+        <div className="flex gap-4 overflow-x-auto px-2 pb-3 scrollbar-hide">
+          {galleryImages.map((img, idx) => {
+            const active = selectedImage === img;
+
+            return (
+              <button
+                key={idx}
+                type="button"
+                onClick={() => setSelectedImage(img)}
+                className={`relative flex-shrink-0 overflow-hidden rounded-2xl border transition-all duration-300 ${active
+                    ? "scale-105 border-[#d4af37] shadow-[0_10px_30px_rgba(212,175,55,0.28)]"
+                    : "border-white/10 opacity-60 hover:scale-105 hover:border-[#d4af37]/40 hover:opacity-100"
+                  }`}
+              >
+                <img
+                  src={img}
+                  alt={`${alt} thumbnail ${idx + 1}`}
+                  className="h-24 w-24 object-cover sm:h-28 sm:w-28"
+                />
+
+                {active && (
+                  <span className="absolute inset-0 rounded-2xl bg-[#d4af37]/10" />
+                )}
+              </button>
+            );
+          })}
         </div>
       )}
     </div>
