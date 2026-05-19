@@ -12,7 +12,17 @@ body {
   margin: 0;
   background: #fafafa;
   color: #111827;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-outfit), Arial, Helvetica, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-serif {
+  font-family: var(--font-playfair), Georgia, serif;
 }
 
 ::selection {
@@ -29,7 +39,7 @@ body {
 }
 
 .luxury-card {
-  background: #ffffff;
+  background: #d4af37/20;
   border: 1px solid rgba(212, 175, 55, 0.15);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
   transition: all 0.3s ease;
@@ -41,9 +51,8 @@ body {
 }
 
 .glass-effect {
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.02);
+  background: transparent;
+  /* backdrop-filter: blur(16px); */
+  /* -webkit-backdrop-filter: blur(16px); */
+  /* border-bottom: 1px solid rgba(255, 255, 255, 0.6); */
 }
