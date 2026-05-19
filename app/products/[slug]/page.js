@@ -124,13 +124,13 @@ export default async function ProductPage({ params }) {
                                 <AddQuotationButton product={product} />
                             </div>
 
-                            <div className="rounded-full border border-white/10 bg-white/[0.05] transition hover:-translate-y-1 hover:border-[#d4af37]/30 hover:bg-white/[0.08]">
+                            {/* <div className="rounded-full border border-white/10 bg-white/[0.05] transition hover:-translate-y-1 hover:border-[#d4af37]/30 hover:bg-white/[0.08]">
                                 <InquiryModal product={product} type="Inquiry" />
-                            </div>
+                            </div> */}
 
-                            <div className="rounded-full border border-white/10 bg-white/[0.05] transition hover:-translate-y-1 hover:border-[#d4af37]/30 hover:bg-white/[0.08]">
+                            {/* <div className="rounded-full border border-white/10 bg-white/[0.05] transition hover:-translate-y-1 hover:border-[#d4af37]/30 hover:bg-white/[0.08]">
                                 <InquiryModal product={product} type="Call Request" />
-                            </div>
+                            </div> */}
                         </div>
 
                         <div className="mt-8 flex flex-wrap gap-3">
