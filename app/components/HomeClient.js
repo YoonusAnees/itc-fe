@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import ProductCard from "./ProductCard";
 
@@ -64,15 +65,7 @@ export default function HomeClient({ products }) {
           initial="hidden"
           animate="show"
         >
-          <motion.div
-            variants={itemVariants}
-            className="mx-auto mb-7 flex w-fit items-center gap-3 rounded-full border border-[#d4af37]/25 bg-black/35 px-5 py-3 backdrop-blur-md"
-          >
-            <span className="h-2 w-2 rounded-full bg-[#d4af37] shadow-[0_0_18px_rgba(212,175,55,0.9)]" />
-            <span className="text-xs font-bold uppercase tracking-[0.35em] text-[#f5d676]">
-              Luxury Jewelry Collection
-            </span>
-          </motion.div>
+         
 
           <motion.h1
             variants={itemVariants}
@@ -104,12 +97,12 @@ export default function HomeClient({ products }) {
               Explore Collection
             </a>
 
-            <a
+            <Link
               href="/products"
               className="rounded-full border border-[#d4af37]/35 bg-white/[0.04] px-10 py-5 font-black text-[#f5d676] backdrop-blur-md transition hover:-translate-y-1 hover:border-[#d4af37] hover:bg-white/[0.08]"
             >
               View All Jewelry
-            </a>
+            </Link>
           </motion.div>
         </motion.div>
       </section>
@@ -144,12 +137,12 @@ export default function HomeClient({ products }) {
             </p>
           </div>
 
-          <a
+          <Link
             href="/products"
             className="w-fit rounded-full border border-[#d4af37]/35 bg-white/[0.04] px-7 py-4 font-bold text-[#f5d676] transition hover:-translate-y-1 hover:bg-[#d4af37] hover:text-black"
           >
             Browse All
-          </a>
+          </Link>
         </motion.div>
 
         <div className="relative z-10 mt-14">
