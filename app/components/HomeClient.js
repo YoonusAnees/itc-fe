@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import ProductCard from "./ProductCard";
+import hero from "../../public/hero.jpg";
 
 export default function HomeClient({ products }) {
   const containerVariants = {
@@ -33,7 +34,7 @@ export default function HomeClient({ products }) {
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-45 scale-105"
           style={{
             backgroundImage:
-              "url('https://images.unsplash.com/photo-1617038220319-276d3cfab638')",
+              `url(${hero.src})`,
           }}
         />
 
