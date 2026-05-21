@@ -125,7 +125,9 @@ export default function Navbar() {
             animate={{ y: 0 }}
             transition={{ type: "spring", stiffness: 100, damping: 20 }}
             className={`fixed w-full top-0 z-50 transition-colors duration-300 ${
-                isScrolled || isMobileMenuOpen ? "bg-white/95 backdrop-blur-md text-black shadow-sm" : "glass-effect text-white"
+                isScrolled || isMobileMenuOpen
+                    ? "bg-white/95 backdrop-blur-md text-black shadow-sm"
+                    : "bg-white/95 text-black lg:glass-effect lg:text-white"
             }`}
         >
             <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
