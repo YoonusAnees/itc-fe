@@ -1,3 +1,6 @@
+
+"use client";
+import about from "../../public/about.jpg";
 export default function AboutPage() {
   return (
     <main className="relative overflow-hidden bg-[#070604] text-white">
@@ -17,7 +20,8 @@ export default function AboutPage() {
           className="absolute inset-0 bg-cover bg-center opacity-35 scale-105"
           style={{
             backgroundImage:
-              "url('https://images.unsplash.com/photo-1617038220319-276d3cfab638')",
+                                    `url(${about.src})`,
+          
           }}
         />
 

@@ -1,4 +1,5 @@
 "use client";
+import contact from "../../public/contact.jpg";
 
 export default function ContactPage() {
   return (
@@ -19,7 +20,8 @@ export default function ContactPage() {
           className="absolute inset-0 bg-cover bg-center opacity-35 scale-105"
           style={{
             backgroundImage:
-              "url('https://images.unsplash.com/photo-1617038220319-276d3cfab638')",
+                          `url(${contact.src})`,
+            
           }}
         />
 
