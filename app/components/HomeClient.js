@@ -65,7 +65,15 @@ export default function HomeClient({ products }) {
           initial="hidden"
           animate="show"
         >
-         
+          <motion.div
+            variants={itemVariants}
+            className="mx-auto mb-7 flex w-fit items-center gap-3 rounded-full border border-[#d4af37]/25 bg-black/35 px-5 py-3 backdrop-blur-md"
+          >
+            <span className="h-2 w-2 rounded-full bg-[#d4af37] shadow-[0_0_18px_rgba(212,175,55,0.9)]" />
+            <span className="text-xs font-bold uppercase tracking-[0.35em] text-[#f5d676]">
+              Luxury Jewelry Collection
+            </span>
+          </motion.div>
 
           <motion.h1
             variants={itemVariants}

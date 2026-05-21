@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
 
 export default function ProductGallery({ images, alt }) {
@@ -18,14 +17,11 @@ export default function ProductGallery({ images, alt }) {
 
         <div className="pointer-events-none absolute right-[-80px] top-[-80px] h-56 w-56 rounded-full bg-[#d4af37]/15 blur-3xl" />
 
-        <div className="relative z-10 h-64 sm:h-[420px] md:h-[520px] lg:h-[700px] w-full rounded-[30px] overflow-hidden">
-          <Image
-            src={selectedImage}
-            alt={alt}
-            fill
-            className="object-cover transition duration-500 group-hover:scale-[1.03]"
-          />
-        </div>
+        <img
+          src={selectedImage}
+          alt={alt}
+          className="relative z-10 h-[520px] w-full rounded-[30px] object-cover transition duration-500 group-hover:scale-[1.03] sm:h-[620px] lg:h-[700px]"
+        />
 
         <div className="pointer-events-none absolute bottom-7 left-7 z-20 rounded-full border border-[#d4af37]/30 bg-black/50 px-5 py-2 text-xs font-bold uppercase tracking-[0.25em] text-[#f5d676] backdrop-blur-md">
           ITC Gold House
@@ -48,9 +44,11 @@ export default function ProductGallery({ images, alt }) {
                     : "border-white/10 opacity-60 hover:scale-105 hover:border-[#d4af37]/40 hover:opacity-100"
                   }`}
               >
-                <div className="h-20 w-20 sm:h-24 sm:w-24 relative">
-                  <Image src={img} alt={`${alt} thumbnail ${idx + 1}`} fill className="object-cover" />
-                </div>
+                <img
+                  src={img}
+                  alt={`${alt} thumbnail ${idx + 1}`}
+                  className="h-24 w-24 object-cover sm:h-28 sm:w-28"
+                />
 
                 {active && (
                   <span className="absolute inset-0 rounded-2xl bg-[#d4af37]/10" />

@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useQuotationStore } from "../lib/quotationStore";
 import { motion } from "framer-motion";
@@ -24,18 +23,14 @@ export default function ProductCard({ product }) {
       whileHover={{ y: -5 }}
     >
       <Link href={`/products/${product.slug}`}>
-        <div className="relative w-full overflow-hidden bg-gray-50">
-          <div className="relative h-64 sm:h-72 md:h-[300px] w-full">
-            <Image
-              src={product.images?.[0] || "/fallback-product.jpg"}
-              alt={product.name}
-              fill
-              className="object-cover transition duration-700 group-hover:scale-110"
-            />
-          </div>
-
+        <div className="relative h-[300px] w-full overflow-hidden bg-gray-50">
+          <img
+            src={product.images?.[0]}
+            alt={product.name}
+            className="h-full w-full object-cover transition duration-700 group-hover:scale-110"
+          />
           <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 transition-opacity duration-500 group-hover:opacity-100 z-10">
-            <span className="bg-black text-white px-6 py-2 rounded-full font-bold uppercase tracking-widest text-xs shadow-xl border border-white/10">
+            <span className="bg-black text-white px-8 py-3 rounded-full font-bold uppercase tracking-widest text-xs shadow-xl border border-white/10">
               View Product
             </span>
           </div>
