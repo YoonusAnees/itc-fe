@@ -185,8 +185,8 @@ export default function Navbar() {
             ref={headerRef}
             className={`fixed top-0 left-0 w-full z-50 overflow-x-hidden transition-all duration-300 ${
                 isScrolled || isMobileMenuOpen
-                    ? "bg-white/95 backdrop-blur-md text-black shadow-sm"
-                    : "glass-effect text-white"
+                    ? "bg-white opacity-95   text-black shadow-sm"
+                    : "glass-effect  text-white"
             }`}
         >
             <div className="mx-auto flex max-w-7xl items-center justify-between px-4 md:px-6 py-4 gap-4">
@@ -205,7 +205,6 @@ export default function Navbar() {
                             }
                             alt="ITC Gold House"
                             fill
-                            sizes="(max-width: 640px) 100px, (max-width: 768px) 120px, (max-width: 1024px) 140px, 140px"
                             className="object-contain"
                             priority
                         />
