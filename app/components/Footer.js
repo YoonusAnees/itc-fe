@@ -78,15 +78,15 @@ export default function Footer() {
             </h3>
 
             <ul className="space-y-4 text-white/50">
-              <li>123 Luxury Avenue, Suite 400</li>
-              <li>Gold District, NY 10001</li>
+              <li>89 Colombo St, Kandy 20000</li>
+              <li>Sri Lanka</li>
 
               <li className="pt-2">
                 <a
-                  href="tel:+94770000000"
+                  href="tel:+94812224256"
                   className="transition hover:text-[#f5d676]"
                 >
-                  +94 77 000 0000
+                   +94 812 224 256
                 </a>
               </li>
 
