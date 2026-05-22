@@ -23,7 +23,7 @@ export default function ProductCard({ product }) {
       whileHover={{ y: -5 }}
     >
       <Link href={`/products/${product.slug}`}>
-        <div className="relative h-[300px] w-full overflow-hidden bg-gray-50">
+        <div className="relative h-[350px] w-full overflow-hidden bg-gray-50">
           <img
             src={product.images?.[0]}
             alt={product.name}
@@ -38,11 +38,11 @@ export default function ProductCard({ product }) {
       </Link>
 
       <div className="p-5">
-        <p className="mb-2 text-xs uppercase tracking-[0.3em] text-[#d4af37] font-bold">
+        <p className="mb-2 text-[10px] uppercase tracking-[0.3em] text-[#d4af37] font-bold">
           {product.purity} Gold
         </p>
 
-        <h3 className="text-2xl font-bold font-serif">
+        <h3 className="text-xl font-bold font-serif">
           {product.name}
         </h3>
 
@@ -51,15 +51,15 @@ export default function ProductCard({ product }) {
         </p>
 
         <div className="mt-6 grid gap-3">
-          <a
+          {/* <a
             href={`https://wa.me/${number}?text=${whatsappMessage}`}
             target="_blank"
             className="rounded-full bg-[#d4af37] px-5 py-4 text-center font-bold text-black hover:bg-[#c19b2e] transition-colors"
           >
             WhatsApp Inquiry
-          </a>
+          </a> */}
 
-          <button
+          {/* <button
             onClick={() => {
               addItem(product);
               alert("Added to quotation bag");
@@ -67,7 +67,7 @@ export default function ProductCard({ product }) {
             className="rounded-full border border-[#d4af37] px-5 py-4 font-bold text-[#d4af37] hover:bg-[#d4af37] hover:text-black transition-colors"
           >
             Add to Quotation
-          </button>
+          </button> */}
         </div>
       </div>
     </motion.div>

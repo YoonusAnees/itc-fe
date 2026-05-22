@@ -166,7 +166,7 @@ export default function HomeClient({ products }) {
               className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
               // initial="hidden"
               // whileInView="show"
-              viewport={{ once: true, margin: "-50px" }}
+              // viewport={{ once: true, margin: "-50px" }}
               // variants={{
               //   hidden: {},
               //   show: {
