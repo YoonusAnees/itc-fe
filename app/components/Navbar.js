@@ -205,6 +205,7 @@ export default function Navbar() {
                             }
                             alt="ITC Gold House"
                             fill
+                            sizes="(max-width: 640px) 100px, (max-width: 768px) 120px, (max-width: 1024px) 140px, 140px"
                             className="object-contain"
                             priority
                         />
@@ -234,7 +235,7 @@ export default function Navbar() {
                     </Suspense>
 
                     {/* Mobile Search Button */}
-                    <button
+                    {/* <button
                         className="md:hidden p-2 h-12 w-12 flex items-center justify-center rounded-full hover:text-[#d4af37] transition-colors shrink-0"
                         onClick={() => {
                             setIsMobileSearchOpen((v) => !v);
@@ -243,7 +244,7 @@ export default function Navbar() {
                         aria-label="Toggle search"
                     >
                         <Search size={20} />
-                    </button>
+                    </button> */}
 
                     {/* Quotation */}
                     <Link
@@ -289,14 +290,14 @@ export default function Navbar() {
             </div>
 
             {/* Mobile Search (togglable) */}
-            {isMobileSearchOpen && (
+            {/* {isMobileSearchOpen && (
                 <div className="md:hidden px-6 pb-4 bg-transparent">
                     <SearchInput
                         className="relative block w-full"
                         onSearch={() => setIsMobileSearchOpen(false)}
                     />
                 </div>
-            )}
+            )} */}
 
             {/* Mobile Menu */}
             {isMobileMenuOpen && (
