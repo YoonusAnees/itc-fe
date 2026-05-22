@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { ShoppingBag, Search, Menu, X } from "lucide-react";
 import { useQuotationStore } from "../lib/quotationStore";
@@ -8,44 +9,32 @@ import {
     useSearchParams,
     usePathname,
 } from "next/navigation";
-import { useState, useEffect, Suspense } from "react";
+import { useState, useEffect, useRef, Suspense } from "react";
 
-function SearchInput({
-    className = "relative hidden md:block",
-    onSearch,
-}) {
+function SearchInput({ className = "relative hidden md:block", onSearch }) {
     const router = useRouter();
     const searchParams = useSearchParams();
-    const [searchQuery, setSearchQuery] = useState("");
-
-    useEffect(() => {
-        const query = searchParams.get("search");
-        setSearchQuery(query || "");
-    }, [searchParams]);
+    const inputRef = useRef(null);
+    const queryParam = searchParams.get("search") || "";
 
     const handleSearch = (e) => {
         e.preventDefault();
-
-        if (searchQuery.trim()) {
-            router.push(
-                `/products?search=${encodeURIComponent(
-                    searchQuery.trim()
-                )}`
-            );
+        const val = inputRef.current?.value?.trim() || "";
+        if (val) {
+            router.push(`/products?search=${encodeURIComponent(val)}`);
         } else {
             router.push("/products");
         }
-
         if (onSearch) onSearch();
     };
 
     return (
         <form onSubmit={handleSearch} className={className}>
             <input
+                ref={inputRef}
                 type="text"
                 placeholder="Search jewelry..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                defaultValue={queryParam}
                 className="w-full md:w-40 lg:w-44 xl:w-56 rounded-full border border-gray-200 bg-white px-4 py-2 pr-10 text-sm text-black outline-none focus:border-[#d4af37] transition-all placeholder:text-gray-400"
             />
 
@@ -147,6 +136,8 @@ export default function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] =
         useState(false);
+    const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
+    const headerRef = useRef(null);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -172,8 +163,26 @@ export default function Navbar() {
             window.removeEventListener("resize", handleResize);
     }, []);
 
+    // Close mobile search/menu when clicking outside header
+    useEffect(() => {
+        const onPointerDown = (e) => {
+            if (!headerRef.current) return;
+            if (!headerRef.current.contains(e.target)) {
+                setIsMobileSearchOpen(false);
+                setIsMobileMenuOpen(false);
+            }
+        };
+
+        if (isMobileSearchOpen || isMobileMenuOpen) {
+            document.addEventListener("pointerdown", onPointerDown);
+        }
+
+        return () => document.removeEventListener("pointerdown", onPointerDown);
+    }, [isMobileSearchOpen, isMobileMenuOpen]);
+
     return (
         <header
+            ref={headerRef}
             className={`fixed top-0 left-0 w-full z-50 overflow-x-hidden transition-all duration-300 ${
                 isScrolled || isMobileMenuOpen
                     ? "bg-white/95 backdrop-blur-md text-black shadow-sm"
@@ -187,15 +196,17 @@ export default function Navbar() {
                     className="shrink-0"
                     onClick={() => setIsMobileMenuOpen(false)}
                 >
-                    <div className="w-[100px] h-[36px] sm:w-[120px] sm:h-[40px] md:w-[140px] md:h-[45px]">
-                        <img
+                    <div className="relative w-[100px] h-[36px] sm:w-[120px] sm:h-[40px] md:w-[140px] md:h-[45px]">
+                        <Image
                             src={
                                 isScrolled || isMobileMenuOpen
                                     ? "/ITC black.png"
                                     : "/ITC white.png"
                             }
                             alt="ITC Gold House"
-                            className="w-full h-full object-contain"
+                            fill
+                            className="object-contain"
+                            priority
                         />
                     </div>
                 </Link>
@@ -222,10 +233,22 @@ export default function Navbar() {
                         <SearchInput />
                     </Suspense>
 
+                    {/* Mobile Search Button */}
+                    <button
+                        className="md:hidden p-2 h-12 w-12 flex items-center justify-center rounded-full hover:text-[#d4af37] transition-colors shrink-0"
+                        onClick={() => {
+                            setIsMobileSearchOpen((v) => !v);
+                            setIsMobileMenuOpen(false);
+                        }}
+                        aria-label="Toggle search"
+                    >
+                        <Search size={20} />
+                    </button>
+
                     {/* Quotation */}
                     <Link
                         href="/quotation"
-                        className="relative flex items-center gap-2 hover:text-[#d4af37] transition-colors font-medium text-sm group shrink-0"
+                        className="relative flex items-center gap-2 hover:text-[#d4af37] transition-colors font-medium text-sm group shrink-0 p-2 sm:p-0 rounded-md"
                         onClick={() =>
                             setIsMobileMenuOpen(false)
                         }
@@ -248,7 +271,7 @@ export default function Navbar() {
 
                     {/* Mobile Menu Button */}
                     <button
-                        className="lg:hidden p-1 hover:text-[#d4af37] transition-colors shrink-0"
+                        className="lg:hidden p-2 h-12 w-12 flex items-center justify-center rounded-full hover:text-[#d4af37] transition-colors shrink-0"
                         onClick={() =>
                             setIsMobileMenuOpen(
                                 !isMobileMenuOpen
@@ -264,6 +287,16 @@ export default function Navbar() {
                     </button>
                 </div>
             </div>
+
+            {/* Mobile Search (togglable) */}
+            {isMobileSearchOpen && (
+                <div className="md:hidden px-6 pb-4 bg-transparent">
+                    <SearchInput
+                        className="relative block w-full"
+                        onSearch={() => setIsMobileSearchOpen(false)}
+                    />
+                </div>
+            )}
 
             {/* Mobile Menu */}
             {isMobileMenuOpen && (
