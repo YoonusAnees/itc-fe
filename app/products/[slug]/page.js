@@ -81,7 +81,7 @@ export default async function ProductPage({ params }) {
                             {product.purity} Gold
                         </p>
 
-                        <h1 className="text-4xl font-black leading-tight text-white sm:text-5xl">
+                        <h1 className="text-2xl font-black leading-tight text-white sm:text-5xl">
                             {product.name}
                         </h1>
 

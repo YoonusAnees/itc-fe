@@ -58,17 +58,17 @@ export default async function ProductsPage({ searchParams }) {
 
       <section className="relative mx-auto max-w-7xl px-6 pb-24 pt-20">
         {/* HERO */}
-        <div className="relative overflow-hidden rounded-[38px] border border-[#d4af37]/25 bg-white/[0.04] px-6 py-12 shadow-[0_30px_100px_rgba(0,0,0,0.55)] backdrop-blur-xl sm:px-10 lg:px-14">
+        <div className="relative overflow-hidden rounded-[38px] border border-[#d4af37]/25 bg-white/[0.04] px-6 py-4 shadow-[0_30px_100px_rgba(0,0,0,0.55)] backdrop-blur-xl sm:px-10 lg:px-14">
           <div className="absolute right-[-60px] top-[-70px] h-56 w-56 rounded-full border border-[#d4af37]/30" />
           <div className="absolute right-[70px] top-[55px] h-24 w-24 rounded-full border border-[#d4af37]/20" />
           <div className="absolute bottom-[-90px] left-[-70px] h-56 w-56 rounded-full bg-[#d4af37]/10 blur-3xl" />
 
-          <div className="relative z-10 max-w-3xl">
+          <div className="relative z-10 max-w-2xl">
             <p className="text-sm font-bold uppercase tracking-[0.35em] text-[#d4af37]">
               {pageSubtitle}
             </p>
 
-            <h1 className="mt-4 text-4xl font-black leading-tight text-white sm:text-5xl lg:text-6xl">
+            <h1 className="mt-4 text-4xl font-black leading-tight text-white sm:text-4xl lg:text-4xl">
               {pageTitle}
             </h1>
 
@@ -116,7 +116,7 @@ export default async function ProductsPage({ searchParams }) {
                 >
                   <div className="pointer-events-none absolute inset-0 rounded-[30px] bg-gradient-to-br from-[#d4af37]/18 via-transparent to-transparent opacity-0 transition duration-300 group-hover:opacity-100" />
 
-                  <div className="relative z-10">
+                  <div className="relative z-10 h-full w-full overflow-hidden">
                     <ProductCard product={product} />
                   </div>
                 </div>
